@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "camel-dashboard-all.fullname" . }}-test-connection"
+  labels:
+    {{- include "camel-dashboard-all.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "camel-dashboard-all.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
