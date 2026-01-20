@@ -1,0 +1,43 @@
+Thank you for installing {{ .Chart.Name }}!
+
+Your release is named {{ .Release.Name }}.
+
+Components installed:
+{{- if index .Values "camel-dashboard-operator" "enabled" }}
+- Camel Dashboard Operator ✓
+{{- end }}
+{{- if index .Values "camel-dashboard-console" "enabled" }}
+- Camel Dashboard Console ✓
+{{- end }}
+{{- if index .Values "hawtio-online-console-plugin" "enabled" }}
+- Hawtio Online Console Plugin ✓
+{{- end }}
+
+To learn more about the release, try:
+
+  $ helm status {{ .Release.Name }} -n {{ .Release.Namespace }}
+  $ helm get all {{ .Release.Name }} -n {{ .Release.Namespace }}
+
+{{- if index .Values "camel-dashboard-console" "enabled" }}
+
+Console Plugin:
+  The Camel Dashboard console plugin has been installed.
+  {{- $console := index .Values "camel-dashboard-console" }}
+  {{- if $console.plugin }}
+  {{- if $console.plugin.jobs }}
+  {{- if $console.plugin.jobs.patchConsoles }}
+  {{- if $console.plugin.jobs.patchConsoles.enabled }}
+  The console will be automatically patched to enable the plugin.
+  {{- else }}
+  Manual console patching is disabled. You may need to manually enable the plugin.
+  {{- end }}
+  {{- end }}
+  {{- end }}
+  {{- end }}
+{{- end }}
+
+For more information, visit:
+  - https://camel-tooling.github.io/camel-dashboard/
+  - https://github.com/camel-tooling/camel-dashboard-operator
+  - https://github.com/camel-tooling/camel-dashboard-console
+  - https://github.com/hawtio/hawtio-online

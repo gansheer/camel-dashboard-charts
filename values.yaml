@@ -1,0 +1,26 @@
+# Camel Dashboard Umbrella Chart Values
+# This chart combines the Camel Dashboard Operator, Console, and Hawtio
+
+# Camel Dashboard Operator
+camel-dashboard-operator:
+  enabled: true
+  operator:
+    image: quay.io/camel-tooling/camel-dashboard-operator:0.1.0
+
+# Camel Dashboard Console Plugin
+camel-dashboard-console:
+  enabled: true
+  plugin:
+    image: quay.io/camel-tooling/camel-dashboard-console:0.2.2
+
+# Hawtio Online Console Plugin
+hawtio-online-console-plugin:
+  enabled: true
+  plugin:
+    image:
+      name: quay.io/hawtio/online-console-plugin
+      tag: 0.6.1
+  gateway:
+    image:
+      name: quay.io/hawtio/online-console-plugin-gateway
+      tag: 0.6.1

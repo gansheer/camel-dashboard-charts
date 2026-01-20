@@ -1,0 +1,37 @@
+apiVersion: v2
+name: camel-dashboard-all
+description: A Helm umbrella chart for the complete Camel Dashboard solution
+type: application
+version: 0.1.0
+appVersion: 4.19.0
+icon: https://camel-tooling.github.io/camel-dashboard/favicons/android-192x192.png
+home: https://camel-tooling.github.io/camel-dashboard/
+sources:
+  - https://github.com/camel-tooling/camel-dashboard
+  - https://github.com/camel-tooling/camel-dashboard-operator
+  - https://github.com/camel-tooling/camel-dashboard-console
+  - https://github.com/hawtio/hawtio-online
+keywords:
+  - camel
+  - dashboard
+  - operator
+  - console
+  - integration
+  - hawtio
+maintainers:
+  - name: gfournier
+    email: gfournier@apache.org
+
+dependencies:
+  - name: camel-dashboard-operator
+    version: "0.1.0"
+    repository: "https://camel-tooling.github.io/camel-dashboard/charts"
+    condition: camel-dashboard-operator.enabled
+  - name: camel-dashboard-console
+    version: "0.2.2"
+    repository: "https://camel-tooling.github.io/camel-dashboard/charts"
+    condition: camel-dashboard-console.enabled
+  - name: hawtio-online-console-plugin
+    version: "0.6.1"
+    repository: "https://hawtio.github.io/hawtio-charts"
+    condition: hawtio-online-console-plugin.enabled
